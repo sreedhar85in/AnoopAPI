@@ -16,7 +16,9 @@ import io.swagger.v3.core.util.Constants;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
+
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.tags.Tag;
@@ -24,6 +26,12 @@ import io.swagger.v3.oas.models.tags.Tag;
 import springfox.documentation.spi.service.contexts.SecurityContext;*/
 
 import org.springframework.web.method.HandlerMethod;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.servers.*;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.*;
+import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.annotations.*;
 
 /*import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -41,6 +49,24 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
  * @SecurityScheme( name = "basicAuth", type = SecuritySchemeType.HTTP, scheme =
  * "basic" )
  */
+
+/*
+ * @Server( url="<dev url>", description="DEV Server" )
+ * 
+ * @Server( url="<prod url>", description="PROD Server" )
+ */
+
+
+  @OpenAPIDefinition(
+  
+  
+  servers = {
+  
+  @Server( url="<dev url>", description="DEV Server" ),
+  
+  @Server( url="<prod url>", description="PROD Server" ) } )
+ 
+
 public class SwaggerConfig implements WebMvcConfigurer {
 	
 	/*@Bean
@@ -64,6 +90,15 @@ public class SwaggerConfig implements WebMvcConfigurer {
 	 */
 	
 	 private static final String API_KEY = "apiKey";
+	 Contact contact1 = new Contact().name("sreedhar").email("sreedhar85in@gmail.com").url("https://www.tranxactor.com/");
+	 License license1 = new License().name("Apache 1.0").url("");
+	// Server server1 = new Server().url("tokyo").description("city name1");
+	// Server server2 = new Server().url("tokyo2").description("prod");
+	// List<Server> sever4 = (List<Server>) new Server().url("tokyo").description("city name1").url("tokyo2").description("prod");
+	 
+	 //contact1.setEmail(""));
+	 //contact1.
+	 
 
 	    @Bean
 	    public OpenAPI customOpenAPI() {
@@ -71,7 +106,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 	                .components(new Components()
 	                        .addSecuritySchemes(API_KEY,apiKeySecuritySchema())) // define the apiKey SecuritySchema
 	                .info(new Info().title("Open API Swagger Specifications Page").description(
-	                        "RESTful services documentation with OpenAPI 3."))
+	                        "RESTful services documentation with OpenAPI 3.").contact(contact1).license(license1))
 	                .security(Collections.singletonList(new SecurityRequirement().addList(API_KEY))); // then apply it. If you don't apply it will not be added to the header in cURL
 	    }
 
