@@ -57,15 +57,16 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
  */
 
 
-  @OpenAPIDefinition(
-  
-  
-  servers = {
-  
-  @Server( url="<dev url>", description="DEV Server" ),
-  
-  @Server( url="<prod url>", description="PROD Server" ) } )
- 
+/*
+ * @OpenAPIDefinition(
+ * 
+ * 
+ * servers = {
+ * 
+ * @Server( url="<dev url>", description="DEV Server" ),
+ * 
+ * @Server( url="<prod url>", description="PROD Server" ) } )
+ */
 
 public class SwaggerConfig implements WebMvcConfigurer {
 	

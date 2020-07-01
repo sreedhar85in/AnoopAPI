@@ -73,20 +73,20 @@ public class JWTFilterConfig extends OncePerRequestFilter {
 			try {
 				AuthToken authToken = Authentication.decode(Xauth);
 				log.info("Token verify success");
-				log.debug("module  :" + authToken.getModule());
-				log.info("traderId  :" + authToken.getTraderId());
-				String moduleCode = authToken.getModule();
-				long traderId = authToken.getTraderId();
+				
+				  log.debug("module  :" + authToken.getModule()); log.info("traderId  :" +
+				  authToken.getTraderId()); String moduleCode = authToken.getModule(); long
+				  traderId = authToken.getTraderId();
+				 
 				String userName = authToken.getUserName();
-				if (moduleCode != null) {
-					request.setAttribute("moduleCode", moduleCode);
-					request.setAttribute("traderId", traderId);
-					request.setAttribute("userName", userName);
-
-				} else {
-					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Authorization header has error! ");
-					return;
-				}
+				
+				  if (moduleCode != null) { request.setAttribute("moduleCode", moduleCode);
+				  request.setAttribute("traderId", traderId); request.setAttribute("userName",
+				  userName);
+				  
+				  } else { response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+				  "Authorization header has error! "); return; }
+				 
 			} catch (Exception e) {
 				setErrorResponse(HttpStatus.BAD_REQUEST, response, e);
 				// response.sendError(HttpServletResponse.SC_ACCEPTED, e.getMessage());
